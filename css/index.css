@@ -1,0 +1,217 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: cursive;
+    color: white;
+}
+
+@font-face {
+    font-family: Alphamusicman;
+    src: url('../font/Amadeus\ Regular.ttf');
+}
+
+h1 {
+    font-family: 'Alphamusicman';
+    font-size: 50px;
+    text-align: center;
+    margin: 0;
+    margin-top: 5px;
+    font-weight: 100;
+    color: orange;
+}
+
+body {
+    background: black;
+}
+
+.swal2-header {
+    padding: 0 !important;
+}
+
+.swal2-styled {
+    border: 0;
+    border-radius: 0.25em;
+    background: initial;
+    background-color: #3085d6;
+    font-size: 1.0625em;
+}
+
+#swal2-content {
+    font-family: cursive !important;
+}
+
+#swal2-title {
+    font-family: sans-serif;
+}
+
+#right {
+    position: absolute;
+    right: 2%;
+    margin-top: -52px;
+}
+
+.leftB {
+    height: 40px;
+    width: 40px;
+    margin: 0;
+}
+
+#soundB {
+    border: 0;
+    background-position: center center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
+#soundB:hover {
+    background-color: rgb(0 185 57 / 30%);
+}
+
+#regenerateB {
+    border: 0;
+    background: url('../img/regenerate.png') center center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-color: transparent;
+}
+
+#regenerateB:hover {
+    background-color: rgb(0 185 57 / 30%);
+}
+
+#settingsB {
+    border: 0;
+    background: url('../img/pngegg.png') center center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-color: transparent;
+}
+
+#settingsB:hover {
+    background-color: rgb(0 185 57 / 30%);
+}
+
+h5 {
+    margin: 10px;
+}
+
+#container {
+    width: 700px;
+    height: 800px;
+    box-shadow: 0 0 10px 5px yellow;
+    border: yellow solid 2px;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 30px);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#canvas {
+    /* width: 95%;
+    height: 650px; */
+    border: rgb(24, 24, 24) solid 1px;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 10px);
+}
+
+.colorlegend {
+    display: inline-block;
+    padding: 0 20px;
+    border-radius: 4px;
+    margin: 0 10px;
+}
+
+#dwhite {
+    box-shadow: 0 0 4px 2px white;
+    background-color: white;
+    color: black;
+}
+
+#dorange {
+    box-shadow: 0 0 4px 2px orange;
+    background-color: orange;
+    color: black;
+}
+
+#dyellow {
+    box-shadow: 0 0 4px 2px yellow;
+    background-color: yellow;
+    color: black;
+}
+
+#dblue {
+    box-shadow: 0 0 4px 2px dodgerblue;
+    background-color: dodgerblue;
+    color: black;
+}
+
+#dviolet {
+    box-shadow: 0 0 4px 2px violet;
+    background-color: violet;
+    color: black;
+}
+
+#dgreen {
+    box-shadow: 0 0 4px 2px lightgreen;
+    background-color: lightgreen;
+    color: black;
+}
+
+#bottom {
+    padding: 12px 20px;
+}
+
+#r1 {
+    width: 100%;
+    height: 50px;
+}
+
+.SelectButtons {
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 25px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.SelectButtons:hover {
+    cursor: pointer;
+    background-color: rgb(66, 66, 66) !important;
+}
+
+#Instructions {
+    text-align: justify;
+    margin: 0 50px;
+}
+
+#PlayArea {
+    text-align: center;
+    height: 450px;
+    transition: margin-top 1s;
+}
+
+#ConfirmButton {
+    height: 40px;
+    width: 200px;
+    font-size: 22px;
+    border-radius: 10px;
+    font-family: cursive;
+    margin-top: 20px
+}
+
+#left {
+    display: flex;
+}
+
+#points {
+    margin-left: 40px;
+}
+
+#ReadyText {
+    margin-bottom: 0;
+}
