@@ -469,33 +469,36 @@ function draw() {
     colwidth = BRICKWIDTH + PADDING + paddleh / 2;
     try {
         if (y < NROWS * rowheight - (dy < 0 ? dy : -dy)) {
-            row = Math.floor((y - rowheight / 2) / rowheight);
             col = Math.floor((x + r) / colwidth);
-            //Spodnji odboj
-            if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                dy = -dy;
-                hit(row, col)
+            if (dy < 0) {
+                //Spodnji odboj
+                row = Math.floor((y - rowheight / 2) / rowheight);
+                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                    dy = -dy;
+                    hit(row, col)
+                }
             } else {
-                row = Math.floor((y + rowheight + r) / rowheight);
+                row = Math.floor((y + rowheight) / rowheight);
                 //Zgornji odboj
                 if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
                     dy = -dy;
                     hit(row, col)
-                } else {
-                    row = Math.floor((y + r) / rowheight);
-                    col = Math.floor((x - r) / colwidth);
-                    //Desni odboj
-                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                        dx = -dx;
-                        hit(row, col)
-                    } else {
-                        col = Math.floor((x + colwidth / 2 - r) / colwidth);
-                        //Levi odboj
-                        if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                            dx = -dx;
-                            hit(row, col)
-                        }
-                    }
+                }
+            }
+            row = Math.floor((y + r) / rowheight);
+            if (dx > 0) {
+                col = Math.floor((x + colwidth / 2 - r) / colwidth);
+                //Levi odboj
+                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                    dx = -dx;
+                    hit(row, col)
+                }
+            } else {
+                col = Math.floor((x) / colwidth);
+                //Desni odboj
+                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                    dx = -dx;
+                    hit(row, col)
                 }
             }
         }
