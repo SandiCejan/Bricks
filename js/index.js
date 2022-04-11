@@ -251,6 +251,7 @@ function playSound() {
 var ThrouhInterval;
 
 function completed() {
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
     soundThrough = 0;
     ThrouhInterval = setInterval(playSound, 400);
     Swal.fire({
@@ -467,44 +468,51 @@ function draw() {
 
     rowheight = BRICKHEIGHT + PADDING + paddleh / 2;
     colwidth = BRICKWIDTH + PADDING + paddleh / 2;
-    try {
-        if (y < NROWS * rowheight - (dy < 0 ? dy : -dy)) {
-            col = Math.floor((x + r) / colwidth);
-            if (dy < 0) {
-                //Spodnji odboj
-                row = Math.floor((y - rowheight / 2) / rowheight);
-                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                    dy = -dy;
-                    hit(row, col)
+    do {
+        try {
+            if (y < NROWS * rowheight - (dy < 0 ? dy : -dy)) {
+                col = Math.floor((x + r) / colwidth);
+                if (dy < 0) {
+                    //Spodnji odboj
+                    row = Math.floor((y - rowheight / 2) / rowheight);
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dy = -dy;
+                        hit(row, col)
+                        break;
+                    }
+                } else {
+                    row = Math.floor((y + rowheight) / rowheight);
+                    //Zgornji odboj
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dy = -dy;
+                        hit(row, col)
+                        break;
+                    }
                 }
-            } else {
-                row = Math.floor((y + rowheight) / rowheight);
-                //Zgornji odboj
-                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                    dy = -dy;
-                    hit(row, col)
+                row = Math.floor((y + r) / rowheight);
+                if (dx > 0) {
+                    col = Math.floor((x + colwidth / 2 - r) / colwidth);
+                    //Levi odboj
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dx = -dx;
+                        hit(row, col)
+                        break;
+                    }
+                } else {
+                    col = Math.floor((x) / colwidth);
+                    //Desni odboj
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dx = -dx;
+                        hit(row, col)
+                        break;
+                    }
                 }
             }
-            row = Math.floor((y + r) / rowheight);
-            if (dx > 0) {
-                col = Math.floor((x + colwidth / 2 - r) / colwidth);
-                //Levi odboj
-                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                    dx = -dx;
-                    hit(row, col)
-                }
-            } else {
-                col = Math.floor((x) / colwidth);
-                //Desni odboj
-                if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                    dx = -dx;
-                    hit(row, col)
-                }
-            }
+        } catch (error) {
+            console.log(error);
         }
-    } catch (error) {
-        console.log(error);
-    }
+    } while (false);
+
     if (x + dx > WIDTH - r || x + dx < 0 + r) {
         dx = -dx;
         a.stop();
