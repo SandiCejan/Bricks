@@ -411,7 +411,7 @@ function init_mouse() {
 
 function onMouseMove(evt) {
     if (evt.pageX > canvasMinX && evt.pageX < canvasMaxX - paddlew) {
-        paddlex = evt.pageX - canvasMinX;
+        paddlex = evt.pageX - canvasMinX - paddlew / 2;
     }
 }
 
