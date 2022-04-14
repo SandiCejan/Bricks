@@ -95,7 +95,7 @@ body {
 }
 
 h5 {
-    margin: 10px;
+    margin: 20px;
 }
 
 #container {
@@ -117,6 +117,7 @@ h5 {
     left: 50%;
     position: relative;
     transform: translate(-50%, 10px);
+    display: none;
 }
 
 .colorlegend {
@@ -164,6 +165,7 @@ h5 {
 
 #bottom {
     padding: 12px 20px;
+    display: none;
 }
 
 #r1 {
@@ -175,9 +177,10 @@ h5 {
     background-color: black;
     color: white;
     width: 80px;
-    height: 25px;
+    height: 28px;
     border: 2px solid white;
     border-radius: 5px;
+    font-family: cursive;
 }
 
 .SelectButtons:hover {
@@ -187,12 +190,12 @@ h5 {
 
 #Instructions {
     text-align: justify;
-    margin: 0 50px;
+    margin: 0 50px 40px;
 }
 
 #PlayArea {
     text-align: center;
-    height: 450px;
+    height: 660px;
     transition: margin-top 1s;
 }
 
@@ -202,7 +205,7 @@ h5 {
     font-size: 22px;
     border-radius: 10px;
     font-family: cursive;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 #left {
@@ -214,5 +217,9 @@ h5 {
 }
 
 #ReadyText {
-    margin-bottom: 0;
+    margin-bottom: 30px;
+}
+
+#r2{
+    margin-bottom: 30px;
 }

@@ -132,11 +132,13 @@ function startGame() {
 }
 
 function closeSettings() {
-    SettingsDiv.style = "margin-top:-450px;";
+    SettingsDiv.style = "margin-top:-680px;";
+    document.getElementById("canvas").style = "display:block;";
+    document.getElementById("bottom").style = "display:block;";
 }
 
 function showSettings() {
-    SettingsDiv.style = "margin-top:-145px;";
+    SettingsDiv.style = "margin-top:-290px;";
     ReadyText.style = "display:none;";
     right = dx > 0;
     up = dy < 0;
@@ -410,7 +412,7 @@ function init_mouse() {
 }
 
 function onMouseMove(evt) {
-    if (evt.pageX > canvasMinX && evt.pageX < canvasMaxX - paddlew) {
+    if (evt.pageX > canvasMinX + paddlew/2 && evt.pageX < canvasMaxX - paddlew/2) {
         paddlex = evt.pageX - canvasMinX - paddlew / 2;
     }
 }
