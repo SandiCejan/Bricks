@@ -132,11 +132,28 @@ function startGame() {
 }
 
 function closeSettings() {
-    SettingsDiv.style = "margin-top:-450px;";
+    SettingsDiv.style = "margin-top:-680px;";
+    document.getElementById("canvas").style = "display:block;";
+    document.getElementById("bottom").style = "display:block;";
+}
+
+function showHome() {
+    SettingsDiv.style = "margin-top:0;";
+    ReadyText.style = "display:block;";
+    right = dx > 0;
+    up = dy < 0;
+    SelectedBeforeLength = SelectedLength;
+    SelectedBeforeMusic = SelectedMusic;
+    SelectedBeforeDifficulty = SelectedDifficulty;
+    clearInterval(inter);
+    clearInterval(Timer);
+    console.log("pause");
+    document.getElementById("canvas").style = "display:none;";
+    document.getElementById("bottom").style = "display:none;";
 }
 
 function showSettings() {
-    SettingsDiv.style = "margin-top:-145px;";
+    SettingsDiv.style = "margin-top:-290px;";
     ReadyText.style = "display:none;";
     right = dx > 0;
     up = dy < 0;
@@ -256,8 +273,8 @@ function completed() {
     ThrouhInterval = setInterval(playSound, 400);
     Swal.fire({
         title: "<h5>CONGRATULATIONS!</h5>",
-        text: "You made it through. Let's hear the song again, shall we? If you want, you can also start it again",
-        confirmButtonText: "Yes",
+        text: "You made it through. Let's hear the song again, shall we? If you want, you can also start it again.",
+        confirmButtonText: "Again",
         confirmButtonColor: 'yellow',
     }).then((result) => {
         regenerate();
@@ -410,8 +427,8 @@ function init_mouse() {
 }
 
 function onMouseMove(evt) {
-    if (evt.pageX > canvasMinX && evt.pageX < canvasMaxX - paddlew) {
-        paddlex = evt.pageX - canvasMinX;
+    if (evt.pageX > canvasMinX + paddlew / 2 && evt.pageX < canvasMaxX - paddlew / 2) {
+        paddlex = evt.pageX - canvasMinX - paddlew / 2;
     }
 }
 

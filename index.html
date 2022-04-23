@@ -17,7 +17,17 @@
     <div id="container">
         <div id="PlayArea">
             <h2>WELCOME TO THE NOTE BLOCKS</h2>
-            <p id="Instructions">What you need to do is simple. Destroy all blocks, for every block you destroy, it will play a different sound. Once you destroy all blocks, a melody will play based on the blocks you destroyed. I hope you are talented in music.</p>
+            <p id="Instructions">What you need to do is simple. Destroy all blocks, for every block you destroy, it will play a different sound. Once you destroy all blocks, a melody will play based on the blocks you destroyed. Different brick colors need a different number
+                of hits to get destroyed. A legend bellow shows you how many hits you need to make for a different color and what note each brick plays. I hope you are talented in music.</p>
+            <div id="r2">
+                LEGEND:
+                <div id="dwhite" class="colorlegend">B</div>
+                <div id="dorange" class="colorlegend">C</div>
+                <div id="dyellow" class="colorlegend">D</div>
+                <div id="dblue" class="colorlegend">E</div>
+                <div id="dviolet" class="colorlegend">F</div>
+                <div id="dgreen" class="colorlegend">G</div>
+            </div>
             <h5>Length</h5>
             <div id="selectLength">
                 <button class="SelectButtons" onclick="selectLength(0);" id="SelectLengthB0">Short</button>
@@ -37,7 +47,7 @@
                 <button class="SelectButtons" onclick="selectMusic(2);" id="SelectMusicB2">Music 3</button>
             </div>
             <p id="ReadyText">Are you ready?</p>
-            <button class="SelectButtons" id="ConfirmButton" onclick="startGame();closeSettings();">Let's play!</button>
+            <button class="SelectButtons" id="ConfirmButton" onclick="closeSettings();startGame();">Let's play!</button>
         </div>
         <canvas id="canvas" width="600" height="670"></canvas>
         <div id="bottom">
@@ -51,6 +61,7 @@
                     <button id="soundB" class="leftB" onclick="mute()" style="background-image: url('img/soundOK.png');"></button>
                     <button id="regenerateB" class="leftB" onclick="endGame();regenerate();"></button>
                     <button id="settingsB" class="leftB" onclick="showSettings();"></button>
+                    <button id="HomeB" class="leftB" onclick="showHome();"></button>
                 </div>
             </div>
             <div id="r2">
