@@ -18,7 +18,19 @@ h1 {
     margin: 0;
     margin-top: 5px;
     font-weight: 100;
-    color: orange;
+    color: yellow;
+    -webkit-animation: glow 3s linear infinite alternate;
+    -moz-animation: glow 3s linear infinite alternate;
+    animation: glow 3s linear infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px yellow, 0 0 20px yellow;
+    }
+    to {
+        text-shadow: 0 0 20px yellow;
+    }
 }
 
 body {
@@ -91,6 +103,18 @@ body {
 }
 
 #settingsB:hover {
+    background-color: rgb(0 185 57 / 30%);
+}
+
+#HomeB {
+    border: 0;
+    background: url('../img/HomeW.png') center center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-color: transparent;
+}
+
+#HomeB:hover {
     background-color: rgb(0 185 57 / 30%);
 }
 
@@ -220,6 +244,10 @@ h5 {
     margin-bottom: 30px;
 }
 
+<<<<<<< HEAD
+#r2 {
+=======
 #r2{
+>>>>>>> e5f02b8b2e3788ad719f59065423cd39912ef0ac
     margin-bottom: 30px;
 }
