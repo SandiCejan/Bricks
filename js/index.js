@@ -135,6 +135,24 @@ function closeSettings() {
     SettingsDiv.style = "margin-top:-680px;";
     document.getElementById("canvas").style = "display:block;";
     document.getElementById("bottom").style = "display:block;";
+<<<<<<< HEAD
+}
+
+function showHome() {
+    SettingsDiv.style = "margin-top:0;";
+    ReadyText.style = "display:block;";
+    right = dx > 0;
+    up = dy < 0;
+    SelectedBeforeLength = SelectedLength;
+    SelectedBeforeMusic = SelectedMusic;
+    SelectedBeforeDifficulty = SelectedDifficulty;
+    clearInterval(inter);
+    clearInterval(Timer);
+    console.log("pause");
+    document.getElementById("canvas").style = "display:none;";
+    document.getElementById("bottom").style = "display:none;";
+=======
+>>>>>>> e5f02b8b2e3788ad719f59065423cd39912ef0ac
 }
 
 function showSettings() {
@@ -258,8 +276,8 @@ function completed() {
     ThrouhInterval = setInterval(playSound, 400);
     Swal.fire({
         title: "<h5>CONGRATULATIONS!</h5>",
-        text: "You made it through. Let's hear the song again, shall we? If you want, you can also start it again",
-        confirmButtonText: "Yes",
+        text: "You made it through. Let's hear the song again, shall we? If you want, you can also start it again.",
+        confirmButtonText: "Again",
         confirmButtonColor: 'yellow',
     }).then((result) => {
         regenerate();
@@ -412,7 +430,11 @@ function init_mouse() {
 }
 
 function onMouseMove(evt) {
+<<<<<<< HEAD
+    if (evt.pageX > canvasMinX + paddlew / 2 && evt.pageX < canvasMaxX - paddlew / 2) {
+=======
     if (evt.pageX > canvasMinX + paddlew/2 && evt.pageX < canvasMaxX - paddlew/2) {
+>>>>>>> e5f02b8b2e3788ad719f59065423cd39912ef0ac
         paddlex = evt.pageX - canvasMinX - paddlew / 2;
     }
 }
