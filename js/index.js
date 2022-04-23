@@ -426,174 +426,170 @@ function init_mouse() {
     canvasMaxX = canvasMinX + WIDTH;
 }
 
-function onMouseMove(evt) { <<
-    << << < HEAD
-    if (evt.pageX > canvasMinX + paddlew / 2 && evt.pageX < canvasMaxX - paddlew / 2) { ===
-        === =
-        if (evt.pageX > canvasMinX + paddlew / 2 && evt.pageX < canvasMaxX - paddlew / 2) { >>>
-            >>> > e5f02b8b2e3788ad719f59065423cd39912ef0ac
-            paddlex = evt.pageX - canvasMinX - paddlew / 2;
+function onMouseMove(evt) {
+    if (evt.pageX > canvasMinX + paddlew / 2 && evt.pageX < canvasMaxX - paddlew / 2) {
+        paddlex = evt.pageX - canvasMinX - paddlew / 2;
+    }
+}
+
+function init_paddle() {
+    paddlex = WIDTH / 2;
+    paddleh = 10;
+    paddlew = 100;
+}
+var rightDown = false;
+var leftDown = false;
+
+//nastavljanje leve in desne tipke
+function onKeyDown(evt) {
+    if (evt.keyCode == 39)
+        rightDown = true;
+    else if (evt.keyCode == 37) leftDown = true;
+}
+
+function onKeyUp(evt) {
+    if (evt.keyCode == 39)
+        rightDown = false;
+    else if (evt.keyCode == 37) leftDown = false;
+}
+$(document).keydown(onKeyDown);
+$(document).keyup(onKeyUp);
+
+function draw() {
+    clear();
+    circle(x, y, 10);
+    if (rightDown) {
+        if ((paddlex + paddlew) < WIDTH) {
+            paddlex += 10;
+        } else {
+            paddlex = WIDTH - paddlew;
+        }
+    } else if (leftDown) {
+        if (paddlex > 0) {
+            paddlex -= 10;
+        } else {
+            paddlex = 0;
         }
     }
+    rect(paddlex, HEIGHT - paddleh, paddlew, paddleh);
 
-    function init_paddle() {
-        paddlex = WIDTH / 2;
-        paddleh = 10;
-        paddlew = 100;
-    }
-    var rightDown = false;
-    var leftDown = false;
-
-    //nastavljanje leve in desne tipke
-    function onKeyDown(evt) {
-        if (evt.keyCode == 39)
-            rightDown = true;
-        else if (evt.keyCode == 37) leftDown = true;
-    }
-
-    function onKeyUp(evt) {
-        if (evt.keyCode == 39)
-            rightDown = false;
-        else if (evt.keyCode == 37) leftDown = false;
-    }
-    $(document).keydown(onKeyDown);
-    $(document).keyup(onKeyUp);
-
-    function draw() {
-        clear();
-        circle(x, y, 10);
-        if (rightDown) {
-            if ((paddlex + paddlew) < WIDTH) {
-                paddlex += 10;
-            } else {
-                paddlex = WIDTH - paddlew;
-            }
-        } else if (leftDown) {
-            if (paddlex > 0) {
-                paddlex -= 10;
-            } else {
-                paddlex = 0;
+    for (i = 0; i < NROWS; i++) {
+        for (j = 0; j < NCOLS; j++) {
+            if (bricks[i][j] != 0) {
+                rect((j * (BRICKWIDTH + PADDING)) + PADDING,
+                    (i * (BRICKHEIGHT + PADDING)) + PADDING,
+                    BRICKWIDTH, BRICKHEIGHT, bricks[i][j]);
             }
         }
-        rect(paddlex, HEIGHT - paddleh, paddlew, paddleh);
+    }
 
-        for (i = 0; i < NROWS; i++) {
-            for (j = 0; j < NCOLS; j++) {
-                if (bricks[i][j] != 0) {
-                    rect((j * (BRICKWIDTH + PADDING)) + PADDING,
-                        (i * (BRICKHEIGHT + PADDING)) + PADDING,
-                        BRICKWIDTH, BRICKHEIGHT, bricks[i][j]);
-                }
-            }
-        }
-
-        rowheight = BRICKHEIGHT + PADDING + paddleh / 2;
-        colwidth = BRICKWIDTH + PADDING + paddleh / 2;
-        do {
-            try {
-                if (y < NROWS * rowheight - (dy < 0 ? dy : -dy)) {
-                    col = Math.floor((x + r) / colwidth);
-                    if (dy < 0) {
-                        //Spodnji odboj
-                        row = Math.floor((y - rowheight / 2) / rowheight);
-                        if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                            dy = -dy;
-                            hit(row, col)
-                            break;
-                        }
-                    } else {
-                        row = Math.floor((y + rowheight) / rowheight);
-                        //Zgornji odboj
-                        if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                            dy = -dy;
-                            hit(row, col)
-                            break;
-                        }
+    rowheight = BRICKHEIGHT + PADDING + paddleh / 2;
+    colwidth = BRICKWIDTH + PADDING + paddleh / 2;
+    do {
+        try {
+            if (y < NROWS * rowheight - (dy < 0 ? dy : -dy)) {
+                col = Math.floor((x + r) / colwidth);
+                if (dy < 0) {
+                    //Spodnji odboj
+                    row = Math.floor((y - rowheight / 2) / rowheight);
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dy = -dy;
+                        hit(row, col)
+                        break;
                     }
-                    row = Math.floor((y + r) / rowheight);
-                    if (dx > 0) {
-                        col = Math.floor((x + colwidth / 2 - r) / colwidth);
-                        //Levi odboj
-                        if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                            dx = -dx;
-                            hit(row, col)
-                            break;
-                        }
-                    } else {
-                        col = Math.floor((x) / colwidth);
-                        //Desni odboj
-                        if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
-                            dx = -dx;
-                            hit(row, col)
-                            break;
-                        }
+                } else {
+                    row = Math.floor((y + rowheight) / rowheight);
+                    //Zgornji odboj
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dy = -dy;
+                        hit(row, col)
+                        break;
                     }
                 }
-            } catch (error) {
-                console.log(error);
+                row = Math.floor((y + r) / rowheight);
+                if (dx > 0) {
+                    col = Math.floor((x + colwidth / 2 - r) / colwidth);
+                    //Levi odboj
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dx = -dx;
+                        hit(row, col)
+                        break;
+                    }
+                } else {
+                    col = Math.floor((x) / colwidth);
+                    //Desni odboj
+                    if (row >= 0 && col >= 0 && bricks[row][col] != 0) {
+                        dx = -dx;
+                        hit(row, col)
+                        break;
+                    }
+                }
             }
-        } while (false);
+        } catch (error) {
+            console.log(error);
+        }
+    } while (false);
 
-        if (x + dx > WIDTH - r || x + dx < 0 + r) {
-            dx = -dx;
+    if (x + dx > WIDTH - r || x + dx < 0 + r) {
+        dx = -dx;
+        a.stop();
+        a.play();
+
+    }
+    if (y + dy < 0 + r) {
+        dy = -dy;
+        a.stop();
+        a.play();
+    } else if (y + dy > HEIGHT - r - paddleh) {
+        if (x > paddlex - r && x < paddlex + paddlew + r) {
+            dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
             a.stop();
             a.play();
-
-        }
-        if (y + dy < 0 + r) {
             dy = -dy;
-            a.stop();
-            a.play();
-        } else if (y + dy > HEIGHT - r - paddleh) {
-            if (x > paddlex - r && x < paddlex + paddlew + r) {
-                dx = 8 * ((x - (paddlex + paddlew / 2)) / paddlew);
-                a.stop();
-                a.play();
-                dy = -dy;
-            } else if (y + dy > HEIGHT - r) {
-                endGame();
-                failed();
-            }
-        }
-        x += dx;
-        y += dy;
-    }
-
-    function hit(i, j) {
-        switch (bricks[i][j]) {
-            case 1:
-                b.stop();
-                b.play();
-                array.push(1);
-                break;
-            case 2:
-                c.play();
-                array.push(2);
-                break;
-            case 3:
-                d.play();
-                array.push(3);
-                break;
-            case 4:
-                e.play();
-                array.push(4);
-                break;
-            case 5:
-                f.play();
-                array.push(5);
-                break;
-            case 6:
-                g.play();
-                array.push(6);
-                break;
-            default:
-                break;
-        }
-        bricks[i][j] -= 1;
-        tocke += 1;
-        Points.innerHTML = "Points: " + tocke;
-        if (target == tocke) {
+        } else if (y + dy > HEIGHT - r) {
             endGame();
-            completed();
+            failed();
         }
     }
+    x += dx;
+    y += dy;
+}
+
+function hit(i, j) {
+    switch (bricks[i][j]) {
+        case 1:
+            b.stop();
+            b.play();
+            array.push(1);
+            break;
+        case 2:
+            c.play();
+            array.push(2);
+            break;
+        case 3:
+            d.play();
+            array.push(3);
+            break;
+        case 4:
+            e.play();
+            array.push(4);
+            break;
+        case 5:
+            f.play();
+            array.push(5);
+            break;
+        case 6:
+            g.play();
+            array.push(6);
+            break;
+        default:
+            break;
+    }
+    bricks[i][j] -= 1;
+    tocke += 1;
+    Points.innerHTML = "Points: " + tocke;
+    if (target == tocke) {
+        endGame();
+        completed();
+    }
+}
